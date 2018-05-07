@@ -258,7 +258,6 @@ else
   dep=degree+dept+")";
 
 $.post('mail.php',{postname:name,postdep:dep,postroll:rollno,postyop:yop,postcity:city,postaddr:addr,postdp:imgurl,postmail:mail},function(data){
-alert("Data is "+data);
 
 });
 
@@ -270,7 +269,7 @@ setTimeout(send,3000);
        {
 
 
-        window.location.href = "pdf.php";
+        window.location.href = "pdf.html";
        }
 
    
