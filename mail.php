@@ -190,7 +190,7 @@ EOF;
 
  //No further need to edit your configuration files.
 $mail = new PHPMailer();
-$mail->IsSMTP();
+//$mail->IsSMTP();
 $mail->SMTPAuth = true;
 $mail->Host = "smtp.gmail.com"; // SMTP server
 $mail->SMTPSecure = "tls";
@@ -207,6 +207,7 @@ $mail->addAttachment(dirname(__FILE__)."/E-Cards/" .$filename. "-SSN-ALUMNI-ECAR
 $mail->WordWrap = 200;
 
 if(!$mail->Send()) {
+  echo "no";
 } else {
 //         echo "<script> setTimeout(redirect, 5000);
 
