@@ -1,0 +1,47 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+<form>
+<input type="text" id="name">
+<input type="text" id="age">
+<input type="file" id="dp">
+<img id="myImg"/>
+<input type="button" value="submit" name="create_pdf" onclick="post()">
+</form>
+<script>
+var d;
+$(":file").change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = imageIsLoaded;
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+function imageIsLoaded(e) {
+    $('#myImg').attr('src', e.target.result);
+    //alert(e.target.result);
+    d=e.target.result;
+  //  console.log(d);
+    if(d.complete==undefined)
+    	console.log("Image not loaded");
+};
+function post(){
+var name=$('#name').val();
+var age=$('#age').val();
+
+
+alert(name+' '+age+' ');
+console.log('img is '+d);
+$.post('pdf.php',{postname:name,postage:age,postdp:d},function(data){
+alert("Data is "+data);
+});
+
+}
+
+</script>
+</body>
+
+</html>

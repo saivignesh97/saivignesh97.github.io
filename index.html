@@ -1,1 +1,724 @@
-Hello World
+<html>
+<head>
+    <title>SSN Alumni Registration</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Courgette|Montserrat" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name="google-signin-client_id" content="465319875348-pm0k5cg4c0frag8vqcr6vaq777a5ev11.apps.googleusercontent.com	">
+
+<link href="https://fonts.googleapis.com/css?family=Spectral+SC" rel="stylesheet">
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <script src="https://apis.google.com/js/api:client.js"></script>
+        <link rel="stylesheet" href="css/animate.min.css">
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+
+    <script>
+    
+    var config = {
+    apiKey: "AIzaSyCIJ8rbC4V7R-nd_s9Y9sgbj86NE_Nl9NU",
+    authDomain: "ssnalumni-188518.firebaseapp.com",
+    databaseURL: "https://ssnalumni-188518.firebaseio.com",
+    projectId: "ssnalumni-188518",
+    storageBucket: "",
+    messagingSenderId: "943468047973"
+  };
+  firebase.initializeApp(config);
+  
+    
+    </script>
+    
+    
+    <script>
+  var googleUser = {};
+  var startApp = function() {
+    gapi.load('auth2', function(){
+      // Retrieve the singleton for the GoogleAuth library and set up the client.
+      auth2 = gapi.auth2.init({
+        client_id: '943468047973-caelvv12na5jel73hqbrob6d6suga6e0.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+        // Request scopes in addition to 'profile' and 'email'
+        //scope: 'additional_scope'
+      });
+      attachSignin(document.getElementById('customBtn'));
+    });
+  };
+
+  function attachSignin(element) {
+    console.log(element.id);
+    auth2.attachClickHandler(element, {},
+        function(googleUser) {
+        var profile = googleUser.getBasicProfile();
+         $('#preloader').fadeOut().css('display','block');
+        $('.container').fadeIn().css('display','none');
+       
+        var mail = profile.getEmail();
+        var check = "ssn.edu.in";
+        var admin = "alumniofficer@ssn.edu.in";
+        if(mail.indexOf(admin)!=-1)
+        {
+
+        	window.location.href="http://localhost:8888/admin.html";
+
+        }
+        else if(mail.indexOf(check)!=-1)
+            {
+               sessionStorage.setItem('key', profile.getEmail());
+               var usernode= sessionStorage.getItem('key').substr(0, sessionStorage.getItem('key').indexOf('@')); 
+     sessionStorage.setItem("name",profile.getName());
+                var testref=firebase.database().ref(usernode);
+                testref.on('value', function(snapshot) {
+   if (snapshot.exists())
+   {
+ window.location.href="http://localhost:8888/exist.php";}
+                    else{
+                    window.location.href="http://localhost:8888/5.php";    
+                        
+                    }
+                
+                               
+            
+              //googleUser.getBasicProfile().getName();)
+        });
+            }
+        else{
+            alert("Please login with SSN ID!");
+        }}, function(error) {
+          alert(JSON.stringify(error, undefined, 2));
+        });
+  }
+  </script>
+    </head>
+    
+    <body>
+        <div id="preloader">
+        
+        <div class="spinner">
+  <div class="cube1"></div>
+  <div class="cube2"></div>
+  
+</div>
+        
+        </div>
+<section class="container">
+  <div class="card">
+    <div class="front">
+    
+    <div id="ssn-video-div">
+    <div class="row">
+    <div class="col-sm-12">
+        <span id="ssn-text" class="animated bounceInLeft">SSN INSTITUTIONS</span>
+        </div></div>
+        <div class="row">
+        <div class="col-sm-12">
+        <span id="alumni-text" class="animated zoomIn">Alumni Registration</span>
+        </div>
+        </div>
+         <div class="row">
+        <div class="col-sm-12">
+        <img id="ssn-logo" src="images/ssn-logo.png"/>
+        </div>
+        </div>
+       
+        <button id="login" onclick="flip()">LOGIN</button>
+        <video autoplay loop muted preload="auto">
+  <source src="images/ssnvideo.mp4" type="video/mp4">
+        </video>
+        
+        </div>
+      </div>
+      <div class="back">
+        
+    <div id="login-div">
+    <div class="row">
+    <div class="col-sm-12">
+        <span id="ssn-text-back">SSN INSTITUTIONS</span>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-12">
+                <span id="alumni-text-back">Alumni Registration</span>
+                </div>
+                </div>
+<div class="row">
+<div class="col-sm-12">
+<p id="alumni1">"A founder can carry an institution only so far, and then others have to step in, even the alumni. That's how an institution becomes one."</p> 
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+        <p id="alumni2">- Dr. Shiv Nadar.</p>
+        </div>
+        </div>
+        <div id="gSignInWrapper">
+    <span class="label"></span>
+    <div id="customBtn" class="customGPlusSignIn">
+      <span class="icon"></span>
+      <span class="buttonText">LOGIN WITH SSN ID</span>
+    </div>
+  </div>
+        <p id="req">If you do not have a SSN ID, <a id="clickhere" href="manual.html">Click Here!</a></p>
+  <div id="name"></div>
+          </div>
+          
+          
+      </div>
+    </div>
+        </section>
+        
+             
+        
+      <script>startApp();</script>
+
+    </body>
+    
+<style>
+    
+    body{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;   
+    margin: auto;
+}
+.back{
+  background-color: #fff;
+}
+    #req{
+        color: #000;
+        font-family: 'Montserrat',sans-serif;
+        font-size: 18px;
+        position: absolute;
+        top:600;
+        left:470;
+        
+    }
+    #clickhere{
+        color: #044D9A;
+        font-style: italic;
+        border-bottom-color: 1px solid #fff;
+        
+    }
+#ssn-video-div{
+width:100%;
+    position: relative;
+    height: 110%;
+    left:-65;
+    top:-5;
+}
+video{
+          filter: blur(5px); 
+          filter: brightness(30%);  
+
+}
+#ssn-text{
+font-family: 'Spectral SC', serif;
+    font-size:55px;
+margin: auto;
+text-outline:2px 2px #fff;
+    
+    z-index: 100;
+  position: absolute;
+  left: 70;
+  right: 0;
+  top: -400;
+  bottom: 0;
+  height: 50px;
+  color: #044D9A;
+}
+#ssn-text-back{
+font-family: 'Spectral SC', serif;
+    font-size:50px;
+margin: auto;
+    
+    z-index: 100;
+  position: absolute;
+  left: 60;
+  right: 0;
+  top: -400;
+  bottom: 0;
+  height: 50px;
+  color: #DAA520;
+}
+
+#alumni-text{
+font-family: 'Courgette', cursive;
+    font-size:30px;
+margin: auto;
+    
+    z-index: 100;
+  position: absolute;
+  left: 20;
+  right: 0;
+  top: -200;
+  bottom: 0;
+  height: 50px;
+  color: #fff;
+}
+#alumni-text-back{
+font-family: 'Courgette', cursive;
+    font-size:20px;
+margin: auto;
+    
+    z-index: 100;
+  position: absolute;
+  left: 20;
+  right: 0;
+  top: -200;
+  bottom: 0;
+  height: 50px;
+  color: #044D9A;
+}
+    #alumni-logo{
+
+      z-index: 100;
+       position: absolute;
+  left: 50;
+  right: 0;
+  top: 120;
+  bottom: 0;
+  height: 50px;
+ 
+    }
+    #ssn-logo{
+
+      z-index: 100;
+       position: absolute;
+  left: 1150;
+  right: 0;
+  top: 650;
+  bottom: 0;
+  height: 50px;
+
+    }
+#form-div{
+    
+    width: 600px;
+    height: 250px;
+    background-color: #044D9A;
+margin-left: 40%;
+    margin-top: -21%;
+    z-index: 100;
+ 
+ }
+
+input {
+	font-family: 'Montserrat',sans-serif;
+		margin-bottom: 10px;
+		width: 300px;
+		color: #044D9A;
+		padding:0;
+		outline:none;
+		margin-left:40%;
+		text-indent: 1rem;
+		font-size: 18px;
+		text-align: left;
+		background: #000;
+	}
+	.float-label {
+	position: relative;
+	display: block;
+	margin-left:40%;
+}
+.float-label label {
+	position: absolute;
+	top: 3px;
+	left: 1em;
+	color:#044D9A;
+	font-family: 'Montserrat',sans-serif;
+	font-size: 15px;
+
+	opacity: 0;
+}
+    .label{
+        
+        font-size: 10px;
+        
+    }
+.float-label input[type='text'] {
+	height: 50px;
+	vertical-align: baseline;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	font-family: 'Montserrat',sans-serif;
+	font-size:20px;
+	margin-bottom:15px;
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	border-bottom-color:#044D9A;
+}
+.float-label input[type='password'] {
+	height: 50px;
+	vertical-align: baseline;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	font-family: 'Montserrat',sans-serif;
+	font-size:20px;
+	margin-bottom:15px;
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	border-bottom-color:#044D9A;
+}
+
+.float-label input, .float-label label {
+	-webkit-transition: 0.2s ease-in-out;
+	-moz-transition: 0.2s ease-in-out;
+	-o-transition: 0.2s ease-in-out;
+	transition: 0.2s ease-in-out;
+}
+.float-label input:focus + label {
+	opacity: 1;
+	display: inline-block;
+	height: 20px;
+
+	padding-bottom: 5px;
+	color: #fff;
+}
+.float-label input:focus {
+	padding-top: 20px;
+		border-bottom-color:#fff;
+
+}
+ .float-label input:focus::-webkit-input-placeholder {
+	opacity: 0;
+}
+.float-label input:focus:-moz-placeholder {
+	opacity: 0;
+}
+.float-label input:focus::-moz-placeholder {
+	opacity: 0;
+}
+.float-label input:focus:-ms-input-placeholder {
+	opacity: 0;
+}
+
+#login{
+    
+    width:120px;
+    height: 50px;
+    background-color:white;
+    border:2px solid #044D9A;
+    font-size:15px;
+margin: auto;
+    font-family: 'Montserrat',sans-serif;
+    z-index: 100;
+  position: absolute;
+  left: -10;
+  right: 0;
+  top: 120;
+  bottom: 0;
+  height: 50px;
+  border-radius: 20px;
+  color: #044D9A;
+transition: all 0.2s ease-in;
+    
+}
+#login:hover{
+    
+    color:#fff;
+    background-color:#044D9A;
+        border:2px solid #fff;
+
+}
+#login-div{
+    margin-top:-3%;
+    width:100%;
+    margin-left: 14.5%;
+    height: 100%;
+background-color: #fff;    
+}
+#alumni1{
+    position: absolute;
+    font-size:30px;
+    color:#000;
+    left:50;
+    right:50;
+    top:300;
+    font-family: 'Spectral SC', serif;
+    
+    }
+#alumni2{
+    position: absolute;
+    font-size:25px;
+    color:#000;
+    left:750;
+    top:400;
+    font-family: 'Spectral SC', serif;
+    
+    }
+
+#loginbut{
+    
+    width:200px;
+    height: 50px;
+    background-color:#044D9A;
+    border:2px solid #fff;
+    font-size:15px;
+margin: auto;
+    font-family: 'Montserrat',sans-serif;
+    z-index: 100;
+  height: 50px;
+  color: #fff;
+    margin-left: 30%;
+    margin-top: 7%;
+transition: all 0.2s ease-in;
+    
+}
+
+
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    -o-perspective: 1000px;
+    perspective: 1000px;
+    display: none;
+}
+.card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-transition: -webkit-transform 2s;
+    -moz-transition: -moz-transform 2s;
+    -o-transition: -o-transform 2s;
+    transition: transform 2s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: 50% 50%;
+}
+.card div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 140px;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+    .card .front{
+        
+        position: absolute;
+        left:50;
+        top:10;
+    }
+.card .back {
+    background-color: transparent;
+    position: absolute;
+    left:200;
+    width:100%!important;
+    height: 100%!important;
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+.card.flipped {
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+
+#vl{
+    
+    width:2px;
+    height: 200px;
+    position: absolute;
+    left:600;
+    bottom:50;
+    background-color: #044D9A;
+}
+
+/*google*/
+    
+    #customBtn {
+      background: #044D9A;
+      color: #fff;
+      width: 190px;
+        height: 50px;
+        padding:10px;
+        position: absolute;
+        top:500;
+        left:550;
+      border-radius: 5px;
+      border: thin solid #888;
+      box-shadow: 1px 1px 1px grey;
+      white-space: nowrap;
+        transition: all 0.2s ease-in;
+    }
+    #name{
+        
+        width: 100px;
+        height: 20px;
+        color:#fff;
+    }
+    #customBtn:hover {
+      cursor: pointer;
+    }
+    span.label {
+      font-family: serif;
+      font-weight: normal;
+    }
+    span.buttonText {
+      vertical-align: middle;
+      font-size: 14px;
+      font-weight: bold;
+      /* Use the Roboto font that is loaded in the <head> */
+      font-family: 'Montserrat', sans-serif;
+    }
+    #customBtn:hover{
+        background-color: #fff;
+        color:#044D9A;
+        border:1px solid #044D9A;
+    }
+    
+    #preloader{
+        margin-top: -1%;
+        width: 100%;
+        height: 107%;
+        background-color:#044D9A; 
+    }
+    
+    .spinner {
+  margin-top: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.cube1, .cube2 {
+  background-color: #fff;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 300;
+  left: 600;
+  
+  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
+  animation: sk-cubemove 1.8s infinite ease-in-out;
+}
+
+.cube2 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+@-webkit-keyframes sk-cubemove {
+  25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
+  50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
+  75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
+  100% { -webkit-transform: rotate(-360deg) }
+}
+
+@keyframes sk-cubemove {
+  25% { 
+    transform: translateX(42px) rotate(-90deg) scale(0.5);
+    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+  } 50% { 
+    transform: translateX(42px) translateY(42px) rotate(-179deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+  } 50.1% { 
+    transform: translateX(42px) translateY(42px) rotate(-180deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+  } 75% { 
+    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+  } 100% { 
+    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
+}
+
+
+@media only screen and (max-width: 500px) {
+#ssn-text{
+  font-size:30px;
+  position: absolute;
+  left:40;
+}
+#alumni-text{
+
+
+  font-size: 20px;
+  position: absolute;
+  top:-40;
+
+}
+#login{
+  position: absolute;
+  left:-5;
+}
+#login-div{
+
+  margin-left: 46.5%;
+}
+#ssn-text-back{
+
+  font-size: 20px;
+  position: absolute;
+  left:30;
+}
+#alumni1{
+
+  font-size: 20px;
+  position: absolute;
+  margin-top: -45px;
+  margin-left: 20px;
+}
+#alumni2{
+
+  font-size: 15px;
+  position: absolute;
+  margin-left: -600px;
+  margin-top: 50px;
+}
+
+#customBtn{
+
+  margin-left: -450px;
+}
+#req{
+  margin-left: -400px;
+  font-size: 15px;
+  margin-top:-20px; 
+}
+}
+    </style>
+    <script>
+    
+    setTimeout(function() {  
+        
+        $('#preloader').fadeOut().css('display','none');
+        $('.container').fadeIn().css('display','block');
+        
+   
+}, 3000);
+
+
+        
+        
+    </script>
+</html>

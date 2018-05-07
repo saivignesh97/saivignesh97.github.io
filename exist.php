@@ -1,0 +1,291 @@
+<html>
+    <head>
+    <title>Registration Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Courgette|Montserrat" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+<link href="https://fonts.googleapis.com/css?family=Spectral+SC" rel="stylesheet">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.2/jspdf.plugin.autotable.js"></script>
+                <link rel="stylesheet" href="css/animate.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  
+
+</script>
+    
+    </head>
+    <body>
+    <div id="main">
+        <p id="signin" class="animated zoomIn">Welcome back</p>
+        <p id="mail1" class="animated zoomIn"></p>
+        <div id="image">
+        <img src="images/clock.jpeg" id="clock">
+            <p id="alumni3" class="animated slideInLeft">"Connect Today. Transform Tomorrow. It's not just our mission. It's our wish for you."</p>
+        
+        </div>
+        <p id="dwld-text" class="animated zoomIn">Download your Alumni ID Card: </p>
+    <button id="dw" onClick="dow()">DOWNLOAD (.PDF)</button>
+    
+        </div>
+    
+    </body>
+
+<style>
+    
+    body{
+        
+        background-color:#0067AD ;
+    }
+    #main{
+        position: absolute;
+        top:70;
+        left:120;
+        width: 80%;
+        height:85%;
+        background: white;
+        box-shadow: 2px 2px 2px 2px #333;    
+    }
+    
+    #clock{
+        filter: blur(3px);
+        width: 500px;
+        height:550px;
+    }
+    #image{
+        background-color: black;
+        width: 50%;
+        height: 100%;
+        
+    }
+    
+    #dwld-text{
+        
+        font-family: 'Montserrat',sans-serif;
+        font-size: 15px;
+        color:#0067AD;
+        position: absolute;
+        top:200;
+        left:600;
+    }
+    #dw{
+        
+        
+        width:200px;
+    height: 50px;
+    background-color:#0067AD;
+    border:2px solid #fff;
+    font-size:15px;
+margin: auto;
+    font-family: 'Montserrat',sans-serif;
+    z-index: 100;
+  position: absolute;
+  left: 450;
+  right: 0;
+  top: -50;
+  bottom: 0;
+  height: 50px;
+  color: #fff;
+transition: all 0.2s ease-in;
+    
+    }
+    #dw:hover{
+        
+        color:#0067AD;
+    background-color:#fff;
+        border:2px solid #0067AD;
+
+    }
+    #mail1{
+        
+        color: white;
+        z-index: 100;
+        position: absolute;
+        top:-50;
+        left:500;
+        font-family:'Montserrat',sans-serif;
+        
+        font-size: 25px;
+    }
+    #signin{
+        
+        position: absolute;
+        top:-50;
+        left:300;
+        font-family: 'Montserrat',sans-serif;
+        color:white;
+        font-size: 25px;
+    }
+    #gen{
+    
+    width:200px;
+    height: 50px;
+    background-color:#0067AD;
+    border:2px solid #fff;
+    font-size:15px;
+margin: auto;
+    font-family: 'Montserrat',sans-serif;
+    z-index: 100;
+  position: absolute;
+  left: 400;
+  right: 0;
+  top: 625;
+  bottom: 0;
+  height: 50px;
+  color: #fff;
+transition: all 0.2s ease-in;
+    
+}
+#gen:hover{
+    
+    color:#0067AD;
+    background-color:#fff;
+        border:2px solid #0067AD;
+
+}
+
+    #alumni3{
+        
+        
+        width: 200px;
+        font-size:35px;
+        color:#fff;
+        font-family: 'Spectral SC',serif;
+        position: absolute;
+        top:40;
+        left:100;
+        z-index: 100;
+    }
+   
+    </style>
+    
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+<script>       
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCIJ8rbC4V7R-nd_s9Y9sgbj86NE_Nl9NU",
+    authDomain: "ssnalumni-188518.firebaseapp.com",
+    databaseURL: "https://ssnalumni-188518.firebaseio.com",
+    projectId: "ssnalumni-188518",
+    storageBucket: "gs://ssnalumni-188518.appspot.com",
+    messagingSenderId: "943468047973"
+  };
+  firebase.initializeApp(config);
+    
+    document.getElementById("mail1").innerHTML=sessionStorage.getItem('key') + '!';
+        
+    var usernode= sessionStorage.getItem('key').substr(0, sessionStorage.getItem('key').indexOf('@')); 
+    
+        //var fireref1 = database.ref("count");
+        
+   $("document").ready(function(){
+       var database = firebase.database();
+        var fireref=database.ref().child(usernode);
+       /*return firebase.database().ref().child('count').once('value').then(function(snapshot) {
+                sessionStorage.setItem('cnt',snapshot.val().count);
+           console.log(sessionStorage.getItem('cnt'));
+  // ...
+});*/
+       var detail=[];
+       var i=0;
+       fireref.on('value', function(notesSnapshot) {
+    notesSnapshot.forEach(function(noteSnapshot) {
+        sessionStorage.setItem("det-"+i,noteSnapshot.val());
+console.log(sessionStorage.getItem("det-"+i));
+                i++;
+
+    });
+});
+      var name=sessionStorage.getItem("det-9");
+       var dept=sessionStorage.getItem("det-5")+"("+sessionStorage.getItem("2")+")";
+       var year=sessionStorage.getItem("det-12");
+       var city=sessionStorage.getItem("det-3");
+       var addr=sessionStorage.getItem("det-1");
+      var mobile=sessionStorage.getItem("det-8");
+      var mail=sessionStorage.getItem("det-6");
+      var imgurl=sessionStorage.getItem("det-7");
+       var roll = sessionStorage.getItem("det-10");
+       var val = sessionStorage.getItem("det-11");
+     
+   var dw=document.getElementById("dw");
+   
+      
+        
+             
+            
+            
+   });
+   function pre()
+{
+
+    setTimeout(dow,5000);
+}
+
+   function dow(){
+
+    var branch=sessionStorage.getItem("det-1");
+    var city=sessionStorage.getItem("det-2");
+    var org=sessionStorage.getItem("det-3");
+    var deg=sessionStorage.getItem("det-4")+" ("+branch+")";
+    var mail=sessionStorage.getItem("det-5");
+    var imgurl=sessionStorage.getItem("det-6");
+    var mobile=sessionStorage.getItem("det-7");
+    var name=sessionStorage.getItem("det-8");
+    var rollno=sessionStorage.getItem("det-9");
+    var val=sessionStorage.getItem("det-10");
+    var yop=sessionStorage.getItem("det-11")+val;
+    var addr=sessionStorage.getItem("det-0");
+    var dept = branch;
+if(deg=="MBA")
+  dept="MBA";
+if(dept=="IT"||dept=="CHEM")
+  degree="B.Tech(";
+else if(dept=="MBA")
+  degree="";
+else
+  degree="B.E(";
+
+if(dept=="MBA")
+  dep="MBA";
+else
+  dep=degree+dept+")";
+
+$.post('mail.php',{postname:name,postdep:dep,postroll:rollno,postyop:yop,postcity:city,postaddr:addr,postdp:imgurl,postmail:mail},function(data){
+alert("Data is "+data);
+
+});
+
+setTimeout(send,3000);
+  }  
+       
+
+       function send()
+       {
+
+
+        window.location.href = "pdf.php";
+       }
+
+   
+
+       
+       
+            
+       
+   
+    
+    
+    
+    </script>
+    
+    
+   
+   
+</html>

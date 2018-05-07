@@ -1,0 +1,674 @@
+<html>
+    <head>
+    <title>Registration Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Courgette|Montserrat" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+<link href="https://fonts.googleapis.com/css?family=Spectral+SC" rel="stylesheet">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.2/jspdf.plugin.autotable.js"></script>
+        
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/animate.min.css">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    
+    </head>
+    <body>
+         <div id="preloader">
+        
+        <div class="spinner">
+  <div class="cube1"></div>
+  <div class="cube2"></div>
+</div>
+        
+        </div>
+    <div id="main">
+        <p id="signin" class="animated zoomIn">Welcome Home, Alumni!</p>
+        <div id="image">
+        <img src="images/clock.jpeg" id="clock">
+            <p id="alumni3">"Connect Today. Transform Tomorrow. It's not just our mission. It's our wish for you."</p>
+        
+        </div>
+        
+    <form id="form" method="POST" class="animated zoomIn">
+        <p id="message"></p>
+        <p class="cnfrm" id="name-div"></p>
+
+	<field class="float-label">
+		<input type="text" id="name" name="name" placeholder="Your Name" tabindex="1" required>
+		<label for="name" id="namel">YOUR NAME</label>
+	</field>
+         <p class="cnfrm" id="dep-div"></p>
+
+        <field class="float-label">
+		<input type="text" id="dep" name="dep" placeholder="Department ( B.E / B.Tech / MBA )" tabindex="2" required>
+
+		<label for="name">DEGREE</label>
+	</field>
+
+    <field class="float-label">
+    <input type="text" id="branch" name="branch" placeholder="Branch" tabindex="3" required>
+
+    <label for="name">BRANCH</label>
+  </field>
+     
+                    <p class="cnfrm" id="yop-div"></p>
+
+    <field class="float-label">
+		<input type="text" id="yop" name="yop" placeholder="Year Of Passing" tabindex="4" required>
+
+		<label for="name">YEAR OF PASSING</label>
+	</field>
+                        <p class="cnfrm" id="org-div"></p>
+
+    <field class="float-label">
+		<input type="text" id="org" name="org" placeholder="Current Organisation" tabindex="5" required>
+
+		<label for="name">CUR. ORGANISATION</label>
+	</field>
+                            <p class="cnfrm" id="city-div"></p>
+
+        <field class="float-label">
+		<input type="text" id="city" name="city" placeholder="Current City" tabindex="6" required>
+
+		<label for="name">CUR. CITY</label>
+	</field>
+                    <p class="cnfrm" id="mobile-div"></p>
+
+    <field class="float-label">
+		<input type="text" id="mobile" name="mobile" placeholder="Mobile No" tabindex="7" required>
+
+		<label for="name">MOBILE NO</label>
+	</field>
+                        <p class="cnfrm" id="mail-div"></p>
+
+    <field class="float-label">
+		<input type="text" id="mail" name="mail" placeholder="Email ID" tabindex="8" required>
+
+		<label for="name">EMAIL ID</label>
+	</field>
+                        <p class="cnfrm" id="addr-div"></p>
+
+    <field class="float-label">
+		<input type="text" id="addr" name="addr" placeholder="Address" tabindex="9" required>
+
+		<label for="name">ADDRESS</label>
+	</field>
+        <div id="profpic"><img id="myImg" src="#"></div>
+      <label id="upload">Upload your picture:</label>  <input type="file" value="Upload picture" id="uploadbtn" required>
+       <button id="req-man" type="button">REQUEST FOR MANUAL APPROVAL</button>
+        </form>
+        
+        </div>
+    
+    
+    
+    
+    </body>
+
+<style>
+    
+    body{
+        
+        background-color:#0067AD ;
+    }
+    #main{
+        position: absolute;
+        top:70;
+        left:120;
+        width: 80%;
+        height:85%;
+        background: white;
+        display: none;
+        box-shadow: 2px 2px 2px 2px #333;    
+    }
+    #form{
+        
+        position: absolute;
+        top:10;
+        left:400;
+        
+    }
+    #upload{
+        color:#0067AD;
+	font-family: 'Montserrat',sans-serif;
+	position: absolute;
+        left:150;
+    }
+    #signin{
+        
+        position: absolute;
+        top:-50;
+        left:400;
+        font-family: 'Montserrat',sans-serif;
+        color:white;
+        font-size: 25px;
+    }
+    #myImg{
+        max-height: 75px;
+        max-width: 75px;
+        position: absolute;
+        top:-50;
+        display: none;
+        left:20;
+    }
+    input {
+	font-family: 'Montserrat',sans-serif;
+		margin-bottom: 5px;
+		width: 300px;
+		color: #5f5f5f;
+		padding:0;
+		outline:none;
+		margin-left:40%;
+		text-indent: 1rem;
+		font-size: 18px;
+		text-align: left;
+		background: #fff;
+	}
+    #profpic{
+        position: absolute;
+        background-color: #fff;
+        left:500;
+        z-index: 100;
+        max-width: 75px;
+        max-height: 75px;
+        
+    }
+	.float-label {
+	position: relative;
+	display: block;
+	margin-left:40%;
+}
+.float-label label {
+	position: absolute;
+	top: 3px;
+	left: 1em;
+	color:#0067AD;
+	font-family: 'Montserrat',sans-serif;
+	font-size: 12px;
+
+	opacity: 0;
+}
+.float-label input[type='text'] {
+	height: 40px;
+	vertical-align: baseline;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	font-family: 'Montserrat',sans-serif;
+	font-size:16px;
+	margin-bottom:15px;
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	border-bottom-color:black;
+}
+
+   input[type='file']
+    {
+        color:#fff;
+        position: absolute;
+        left:200;
+        width: 100px;
+        
+    }
+.float-label input, .float-label label {
+	-webkit-transition: 0.2s ease-in-out;
+	-moz-transition: 0.2s ease-in-out;
+	-o-transition: 0.2s ease-in-out;
+	transition: 0.2s ease-in-out;
+}
+.float-label input:focus + label {
+	opacity: 1;
+	display: inline-block;
+	height: 20px;
+
+	padding-bottom: 5px;
+	color: #0067AD;
+}
+.float-label input:focus {
+	padding-top: 20px;
+		border-bottom-color:#0067AD;
+
+}
+ .float-label input:focus::-webkit-input-placeholder {
+	opacity: 0;
+}
+.float-label input:focus:-moz-placeholder {
+	opacity: 0;
+}
+.float-label input:focus::-moz-placeholder {
+	opacity: 0;
+}
+.float-label input:focus:-ms-input-placeholder {
+	opacity: 0;
+}
+
+    #clock{
+        filter: blur(3px);
+        width: 500px;
+        height:550px;
+    }
+    #image{
+        background-color: black;
+        width: 50%;
+        height: 100%;
+        
+    }
+    #mail1{
+        
+        color: white;
+        z-index: 100;
+        position: absolute;
+        top:-50;
+        left:500;
+        font-family:'Montserrat',sans-serif;
+        
+        font-size: 25px;
+    }
+    #req-man{
+    
+    width:300px;
+    height: 50px;
+    background-color:#0067AD;
+    border:2px solid #fff;
+    font-size:15px;
+margin: auto;
+    font-family: 'Montserrat',sans-serif;
+    z-index: 100;
+  position: absolute;
+  left: 200;
+  right: 0;
+  top: 625;
+  bottom: 0;
+  height: 50px;
+  color: #fff;
+  outline: none;
+transition: all 0.2s ease-in;
+    
+}
+#req-man:hover{
+    
+    color:#0067AD;
+    background-color:#fff;
+        border:2px solid #0067AD;
+
+}
+#confirm{
+    
+    width:200px;
+    height: 50px;
+    background-color:#0067AD;
+    border:2px solid #fff;
+    font-size:15px;
+margin: auto;
+    font-family: 'Montserrat',sans-serif;
+    z-index: 100;
+  position: absolute;
+  left: 150;
+  right: 0;
+  top: 625;
+  bottom: 0;
+  height: 50px;
+  color: #fff;
+  outline: none;
+transition: all 0.2s ease-in;
+    
+}
+#confirm:hover{
+    
+    color:#0067AD;
+    background-color:#fff;
+        border:2px solid #0067AD;
+
+}
+    #alumni3{
+        
+        
+        width: 200px;
+        font-size:35px;
+        color:#fff;
+        font-family: 'Spectral SC',serif;
+        position: absolute;
+        top:40;
+        left:100;
+        z-index: 100;
+    }
+    .cnfrm{
+        width: 100%;
+    }
+    #name-div{
+        
+        position: absolute;
+        top:40;
+        left:200;
+        z-index: 900;
+        font-family: 'Montserrat',sans-serif;
+        color: #0067AD;
+        font-size: 20px;
+        display: none;
+        
+    }
+    #dep-div{
+        
+        position: absolute;
+        top:80;
+        left:200;
+        padding-top: 20px;
+        z-index: 900;
+        font-family: 'Montserrat',sans-serif;
+        color: #0067AD;
+        font-size: 20px;
+        display: none;
+        
+    }
+   #yop-div{
+        
+        position: absolute;
+        top:130;
+        left:200;
+        padding-top: 20px;
+        z-index: 900;
+        font-family: 'Montserrat',sans-serif;
+        color: #0067AD;
+        font-size: 20px;
+        display: none;
+        
+    }
+   #org-div{
+        
+        position: absolute;
+        top:175;
+        left:200;
+        padding-top: 20px;
+        z-index: 900;
+        font-family: 'Montserrat',sans-serif;
+        color: #0067AD;
+        font-size: 20px;
+        display: none;
+        
+    }
+   #city-div{
+        
+        position: absolute;
+        top:230;
+        left:200;
+        padding-top: 20px;
+        z-index: 900;
+        font-family: 'Montserrat',sans-serif;
+        color: #0067AD;
+        font-size: 20px;
+        display: none;
+        
+    }
+   #mobile-div{
+        
+        position: absolute;
+        top:280;
+        left:200;
+        padding-top: 20px;
+        z-index: 900;
+        font-family: 'Montserrat',sans-serif;
+        color: #0067AD;
+        font-size: 20px;
+        display: none;
+        
+    }
+   #mail-div{
+        
+        position: absolute;
+        top:330;
+        left:200;
+        padding-top: 20px;
+        z-index: 900;
+        font-family: 'Montserrat',sans-serif;
+        color: #0067AD;
+        font-size: 20px;
+        display: none;
+        
+    }
+   #addr-div{
+        
+        position: absolute;
+        top:400;
+        left:200;
+        padding-top: 20px;
+        z-index: 900;
+        font-family: 'Montserrat',sans-serif;
+        color: #0067AD;
+        font-size: 20px;
+        display: none;
+        
+    }
+    #message{
+        font-family: 'Montserrat',sans-serif;
+        font-size: 24px;
+        color: #0067AD;
+        position: absolute;
+        width: 100%;
+        visibility: hidden;
+        top:150;
+        left:230;
+    }
+    
+    #preloader{
+        margin-top: -1%;
+        width: 100%;
+        height: 107%;
+        background-color:#0067AD; 
+    }
+    
+    .spinner {
+  margin-top: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.cube1, .cube2 {
+  background-color: #fff;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 300;
+  left: 600;
+  
+  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
+  animation: sk-cubemove 1.8s infinite ease-in-out;
+}
+
+.cube2 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+@-webkit-keyframes sk-cubemove {
+  25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
+  50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
+  75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
+  100% { -webkit-transform: rotate(-360deg) }
+}
+
+@keyframes sk-cubemove {
+  25% { 
+    transform: translateX(42px) rotate(-90deg) scale(0.5);
+    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+  } 50% { 
+    transform: translateX(42px) translateY(42px) rotate(-179deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+  } 50.1% { 
+    transform: translateX(42px) translateY(42px) rotate(-180deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+  } 75% { 
+    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+  } 100% { 
+    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
+}
+    
+    </style>
+    
+    <script>
+    
+    setTimeout(function() {  
+        
+        $('#preloader').fadeOut().css('display','none');
+        $('#main').fadeIn().css('display','block');
+        
+   
+}, 3000);
+    
+    
+    </script>
+    
+    
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+<script>       
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCIJ8rbC4V7R-nd_s9Y9sgbj86NE_Nl9NU",
+    authDomain: "ssnalumni-188518.firebaseapp.com",
+    databaseURL: "https://ssnalumni-188518.firebaseio.com",
+    projectId: "ssnalumni-188518",
+    storageBucket: "gs://ssnalumni-188518.appspot.com",
+    messagingSenderId: "943468047973"
+  };
+  firebase.initializeApp(config);
+    
+       
+    
+        //var fireref1 = database.ref("count");
+        
+   $("document").ready(function(){
+       var database = firebase.database();
+       
+       
+     
+        $("#req-man").click(function()
+                       {
+           
+       var name=$("#name").val();
+       var dept=$("#branch").val();
+              var yop=$("#yop").val();
+
+        var fireref= database.ref().child('To be Approved');
+            var fd=fireref.child(name+' '+dept+' '+yop);
+    
+    var result=fd.set({
+        name:$('#name').val(),
+    degree:$('#dep').val(),
+    branch:$('#branch').val(),
+
+    city:$('#city').val(),
+    year_of_passing:$('#yop').val(),
+    cur_organisation:$('#org').val(),
+    mobile:$('#mobile').val(),
+    email:$('#mail').val(),
+    address:$('#addr').val(),
+    image_url:sessionStorage.getItem("imgurl")
+    });
+            
+         $("#name").css('visibility','hidden');   
+         $("#dep").css('visibility','hidden'); 
+           $("#branch").css('visibility','hidden'); 
+         
+         $("#yop").css('visibility','hidden');   
+         $("#org").css('visibility','hidden');   
+         $("#city").css('visibility','hidden');   
+         $("#addr").css('visibility','hidden');   
+         $("#mail").css('visibility','hidden');   
+         $("#mobile").css('visibility','hidden');   
+         $("#upload").css('visibility','hidden');         $("#uploadbtn").css('visibility','hidden');   
+         $("#myImg").css('visibility','hidden'); $("#req-man").css('visibility','hidden');   
+
+  $("#message").text("Your request for Alumni ID Card has been successfully sent.You will receive the notification through your registered mail id once the verification is done.");
+           $("#message").addClass("animated zoomIn");
+
+
+            $("#message").show(1000).css('visibility','visible');
+            window.setTimeout(function(){
+
+        // Move to a new location or you can do something else
+        window.location.href = "index.html";
+
+    }, 5000);
+
+       
+
+});
+     var filebutton = document.getElementById("uploadbtn");
+       var specialElementHandlers = {
+        '#editor': function (element,renderer) {
+            return true;
+        }
+    };
+var d;
+$(":file").change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = imageIsLoaded;
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+var specialElementHandlers = {
+        '#editor': function (element,renderer) {
+            return true;
+        }
+    };
+function imageIsLoaded(e) {
+    $('#myImg').attr('src', e.target.result);
+    $('#myImg').css('display','block');
+    //alert(e.target.result);
+    d=e.target.result;
+
+sessionStorage.setItem("imgurl",d);
+  //  console.log(d);
+    if(d.complete==undefined)
+        console.log("Image not loaded");
+};
+
+filebutton.addEventListener('change',function(e)
+          {
+        var name=$("#name").val();
+       var dept=$("#dep").val();
+       var year=$("#yop").val();
+                              
+    var file = e.target.files[0];
+var storageref= firebase.storage().ref(name+'-'+dept+'-'+year);
+            
+       storageref.put(file);
+        console.log(file);
+    
+                                      });
+            
+       
+       
+       
+            
+   });
+    
+    
+    
+    
+    
+       
+  
+       
+  
+    
+    
+    
+    </script>
+    
+   
+   
+</html>

@@ -1,0 +1,609 @@
+<html>
+    <head>
+    <title>Registration Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Courgette|Montserrat" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+<link href="https://fonts.googleapis.com/css?family=Spectral+SC" rel="stylesheet">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.2/jspdf.plugin.autotable.js"></script>
+        
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    
+    </head>
+    <body>
+         <div id="preloader">
+        
+        <div class="spinner">
+  <div class="cube1"></div>
+  <div class="cube2"></div>
+</div>
+        
+        </div>
+    <div id="main">
+        <div id="answerdiv-0">this is div0</div>
+        </div>
+    
+    
+    
+    
+    </body>
+<style>
+    
+    body{
+        
+        background-color:#0067AD ;
+    }
+    .card{
+        width: 100%;
+        position: relative;
+        margin-bottom: 3px;
+        height: 150px;
+        border:2px solid #fff;
+        box-shadow: 3px -2px 17px 0px #0067AD;
+background-color: white;
+    }
+    p{
+
+      background-color: #ff0000;
+      font-size:20px;
+      position: absolute;
+
+    }
+    .hr{
+        background: #0067AD;
+        height: 3px;
+        width: 100%;
+        z-index: 100;
+        position: absolute;
+        top:150;
+    }
+    #answerdiv-0{
+        display: none;
+        
+    }
+    #main{
+        position: absolute;
+        top:70;
+        left:120;
+        width: 80%;
+        height:85%;
+        overflow-y: scroll;
+        background-color: #0067AD;
+        display: none;
+        box-shadow: 2px 2px 2px 2px #fff;    
+    }
+    
+    
+    #preloader{
+        margin-top: -1%;
+        width: 100%;
+        height: 107%;
+        background-color:#0067AD; 
+    }
+    
+    .spinner {
+  margin-top: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.cube1, .cube2 {
+  background-color: #fff;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 300;
+  left: 600;
+  
+  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
+  animation: sk-cubemove 1.8s infinite ease-in-out;
+}
+
+.cube2 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+@-webkit-keyframes sk-cubemove {
+  25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
+  50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
+  75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
+  100% { -webkit-transform: rotate(-360deg) }
+}
+
+@keyframes sk-cubemove {
+  25% { 
+    transform: translateX(42px) rotate(-90deg) scale(0.5);
+    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+  } 50% { 
+    transform: translateX(42px) translateY(42px) rotate(-179deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+  } 50.1% { 
+    transform: translateX(42px) translateY(42px) rotate(-180deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+  } 75% { 
+    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+  } 100% { 
+    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
+}
+
+div::-webkit-scrollbar {
+    width: 2px;
+    background-color: slategrey;
+}
+ 
+div::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #0067AD;
+    background-color: #0067AD;
+}
+ 
+div::-webkit-scrollbar-thumb {
+  background-color: slategrey;
+  outline: 1px solid #0067AD;
+}
+    
+    </style>
+    
+    <script>
+    
+    setTimeout(function() {  
+        
+        $('#preloader').fadeOut().css('display','none');
+        $('#main').fadeIn().css('display','block');
+        
+   
+}, 3000);
+    
+    
+    </script>
+    
+    
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+<script>       
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCIJ8rbC4V7R-nd_s9Y9sgbj86NE_Nl9NU",
+    authDomain: "ssnalumni-188518.firebaseapp.com",
+    databaseURL: "https://ssnalumni-188518.firebaseio.com",
+    projectId: "ssnalumni-188518",
+    storageBucket: "gs://ssnalumni-188518.appspot.com",
+    messagingSenderId: "943468047973"
+  };
+  firebase.initializeApp(config);
+    
+       
+    
+        //var fireref1 = database.ref("count");
+        
+       
+       
+     var i=0;
+     var database = firebase.database();
+
+    var fireref = database.ref().child('To be Approved');
+    var fireref1 = database.ref().child('To be Approved');
+   fireref.on('value', function(notesSnapshot) {
+    notesSnapshot.forEach(function(noteSnapshot) {
+        sessionStorage.setItem("name-"+i,noteSnapshot.val().name);
+        sessionStorage.setItem("dep-"+i,noteSnapshot.val().department);
+        sessionStorage.setItem("branch-"+i,noteSnapshot.val().branch);
+        sessionStorage.setItem("yop-"+i,noteSnapshot.val().year_of_passing);
+        sessionStorage.setItem("city-"+i,noteSnapshot.val().city);
+                sessionStorage.setItem("addr-"+i,noteSnapshot.val().address);
+                sessionStorage.setItem("org-"+i,noteSnapshot.val().cur_organisation);
+                sessionStorage.setItem("mob-"+i,noteSnapshot.val().mobile);
+                sessionStorage.setItem("mail-"+i,noteSnapshot.val().email);
+                sessionStorage.setItem("image-"+i,noteSnapshot.val().image_url);
+
+
+
+        console.log(noteSnapshot.val().image_url);
+        i++;
+        sessionStorage.setItem("i",i);
+
+
+        });
+    });
+       $("document").ready(function(){
+window.setTimeout(function(){
+
+for (var i=0; i<sessionStorage.getItem("i"); i++){
+        var d_id = i+1;
+        var p_id=0;
+
+
+        $( "<div id='answerdiv-" +d_id+ "' class='card'>"+"</div>" ).insertAfter( "#answerdiv-"+i );
+    
+   // var p = "<p id='p-"+d_id+"-0>"+ "Name : "+sessionStorage.getItem("name-"+i)+ "</p>";
+   // document.getElementById("answerdiv-"+d_id).insertAdjacentHTML('beforebegin',p);
+   var namespan = document.createElement('span');
+   namespan.style.fontSize = "15px";
+   namespan.style.marginLeft = "80px";
+   namespan.style.fontFamily = "Montserrat,sans-serif";
+   namespan.style.display = "table";
+   namespan.style.padding = "10px";
+   var name = document.createTextNode("Name:"+sessionStorage.getItem("name-"+i));
+
+   namespan.appendChild(name);
+
+  
+  var depspan = document.createElement('span');
+   depspan.style.fontSize = "15px";
+   depspan.style.marginLeft = "85px";
+   depspan.style.display = "table";
+   depspan.style.padding = "5px";
+   depspan.style.fontFamily = "Montserrat,sans-serif";
+   var dep = document.createTextNode("Branch: "+sessionStorage.getItem("branch-"+i));
+   depspan.appendChild(dep);
+
+
+var yopspan = document.createElement('span');
+   yopspan.style.fontSize = "15px";
+   yopspan.style.marginLeft = "80px";
+   yopspan.style.display = "table";
+   yopspan.style.padding = "10px";
+  yopspan.style.fontFamily = "Montserrat,sans-serif";
+   var yop = document.createTextNode("Year Of Passing: "+sessionStorage.getItem("yop-"+i));
+   yopspan.appendChild(yop);
+
+var cityspan = document.createElement('span');
+   cityspan.style.fontSize = "15px";
+   cityspan.style.marginLeft = "85px";
+   cityspan.style.fontFamily = "Montserrat,sans-serif";
+   cityspan.style.display = "table";
+   cityspan.style.padding = "5px";
+   var city = document.createTextNode("City: "+sessionStorage.getItem("city-"+i));
+   cityspan.appendChild(city);
+
+var addrspan = document.createElement('span');
+   addrspan.style.fontSize = "15px";
+   addrspan.style.marginLeft = "400px";
+    addrspan.style.position = "absolute";
+   addrspan.style.top="10px";
+   addrspan.style.fontFamily = "Montserrat,sans-serif";
+   addrspan.style.display = "table";
+   addrspan.style.padding = "5px";
+   var addr = document.createTextNode("Address: "+sessionStorage.getItem("addr-"+i));
+   addrspan.appendChild(addr);
+
+var orgspan = document.createElement('span');
+   orgspan.style.fontSize = "15px";
+   orgspan.style.marginLeft = "400px";
+       orgspan.style.position = "absolute";
+
+   orgspan.style.top="40px";
+   orgspan.style.fontFamily = "Montserrat,sans-serif";
+   orgspan.style.display = "table";
+   orgspan.style.padding = "5px";
+   var org = document.createTextNode("Organisation: "+sessionStorage.getItem("org-"+i));
+   orgspan.appendChild(org);
+
+var mobspan = document.createElement('span');
+   mobspan.style.fontSize = "15px";
+   mobspan.style.marginLeft = "400px";
+   mobspan.style.position = "absolute";
+
+   mobspan.style.top="70px";
+   mobspan.style.fontFamily = "Montserrat,sans-serif";
+   mobspan.style.display = "table";
+   mobspan.style.padding = "5px";
+   var mob = document.createTextNode("Mobile: "+sessionStorage.getItem("mob-"+i));
+   mobspan.appendChild(mob);
+
+
+var mailspan = document.createElement('span');
+   mailspan.style.fontSize = "15px";
+   mailspan.style.marginLeft = "400px";
+   mailspan.style.position = "absolute";
+
+   mailspan.style.top="110px";
+   mailspan.style.fontFamily = "Montserrat,sans-serif";
+   mailspan.style.display = "table";
+   mailspan.style.padding = "5px";
+   var mail = document.createTextNode("Mail Id : "+sessionStorage.getItem("mail-"+i));
+   mailspan.appendChild(mail);
+
+
+var approvebtn= document.createElement("BUTTON");
+approvebtn.setAttribute("id","app-"+i);
+var approvetext = document.createTextNode("APPROVE");
+approvebtn.style.backgroundColor = "#0067AD";
+approvebtn.style.fontSize = "15px";
+approvebtn.style.color = "#fff";
+   approvebtn.style.left = "900px";
+
+approvebtn.style.position = "absolute";
+
+   approvebtn.style.top="40px";
+      approvebtn.style.fontFamily = "Montserrat,sans-serif";
+   approvebtn.style.display = "table";
+   approvebtn.style.padding = "5px";
+   
+    approvebtn.appendChild(approvetext);
+
+
+var rejectbtn= document.createElement("BUTTON");
+rejectbtn.setAttribute("id","rej-"+i);
+
+var rejecttext = document.createTextNode("REJECT");
+rejectbtn.style.backgroundColor = "#0067AD";
+rejectbtn.style.fontSize = "15px";
+rejectbtn.style.color = "#fff";
+   rejectbtn.style.left = "900px";
+   rejectbtn.style.position = "absolute";
+
+   rejectbtn.style.top="90px";
+   rejectbtn.style.fontFamily = "Montserrat,sans-serif";
+   rejectbtn.style.display = "table";
+   rejectbtn.style.paddingRight = "15px";
+      rejectbtn.style.paddingLeft = "15px";
+         rejectbtn.style.paddingTop = "5px";
+   rejectbtn.style.paddingBottom = "5px";
+
+
+   
+    rejectbtn.appendChild(rejecttext);
+
+
+   var div = document.getElementById("answerdiv-"+d_id);
+   div.appendChild(namespan);
+    div.appendChild(depspan);
+
+    div.appendChild(yopspan);
+     div.appendChild(cityspan);
+          div.appendChild(addrspan);
+          div.appendChild(orgspan);
+          div.appendChild(mobspan);
+          div.appendChild(mailspan);
+          div.appendChild(approvebtn);
+          div.appendChild(rejectbtn);
+
+
+
+          // Create a text node
+
+     
+
+}
+    }, 3000);
+    
+        
+    document.addEventListener('click', function (e) {
+      var target = e.target;
+      var ivalue = target.id.slice(-1);
+      var newivalue = parseInt(ivalue)+1;
+      if (target.tagName && target.tagName.toLowerCase() == "button" && target.firstChild.nodeValue=="APPROVE") {
+
+            $("#answerdiv-"+newivalue).hide(1000);
+            var year= sessionStorage.getItem("yop-"+ivalue);
+        var branch=sessionStorage.getItem("branch-"+ivalue);
+               var database = firebase.database();
+
+           var fireref1=database.ref().child('Count');//+year+'/'+dept);
+        var fd=fireref1.child(year+'/'+branch);
+           
+    var root=null;
+         var reference=firebase.database().ref('Count');
+        var q=reference.child(year);
+        var childData = 0;
+         q.on("value",function(snapshot){
+                   
+                root=snapshot.val();
+                    console.log("root is "+root);
+                    snapshot.forEach(function(childSnapshot) 
+                {
+                  //console.log(childSnapshot.key());
+                     childData = childSnapshot.val();
+                   // console.log(child);
+                 });
+
+              
+         if(root!=null)
+        {
+var root1=null;
+console.log("entered...");
+var reference1=firebase.database().ref('Count');
+        var q1=reference.child(year+'/'+branch);
+
+         q1.on("value",function(snapshot){
+                  // console.log(snapshot.val());
+                root1=snapshot.val();
+
+                    snapshot.forEach(function(childSnapshot) 
+                {
+                  //console.log(childSnapshot.key());
+                     childData = childSnapshot.val();
+                    //console.log(child);
+                 });
+
+                console.log("root1 is"+root1);
+
+                if(root1==null)
+                {
+                    var r=firebase.database().ref('Count/'+year+'/'+branch);
+                        r.set({
+                            Val:0
+                        });
+                }
+                else
+                {
+
+                    var res=firebase.database().ref('Count/'+year+'/'+branch);
+                    res.on('value',function(snapshot){
+                      //  console.log(snapshot.val());
+      snapshot.forEach(function(childSnapshot) 
+                {
+                  //console.log(childSnapshot.key());
+                     childData = childSnapshot.val();
+                    console.log("node value is"+childData);
+                 });
+
+                    });
+
+
+                }
+
+              });
+            
+
+        }
+        else
+        {
+             var r=firebase.database().ref('Count/'+year+'/'+branch);
+                        r.set({
+                            Val:0
+                        });
+        }
+     
+           
+   });        
+           
+       
+//     var ret=firebase.database().ref().child('Count/'+year+'/'+dept);
+// ret.on('value', function(snapshot) {
+// //console.log(snapshot.val());
+// snapshot.forEach(function(childSnapshot) {
+// window.childData = childSnapshot.val();
+// console.log('Value is ' +window.childData);
+//               });
+
+    setTimeout(function(){
+       var ans=parseInt(childData)+1;
+                    if(ans<10)
+            {
+        console.log("the ans is"+ans);
+            var rollno = sessionStorage.getItem("yop-"+ivalue).slice(-3) + sessionStorage.getItem("branch-"+ivalue).substr(0,2) + '00' +ans;
+                sessionStorage.setItem("rollno-"+ivalue,rollno);
+                }
+            else if(ans>10 && ans<100)
+                {
+            var rollno = sessionStorage.getItem("yop-"+ivalue).slice(-3) + sessionStorage.getItem("branch-"+ivalue).substr(0,2) + '0' +ans;
+                            sessionStorage.setItem("rollno-"+ivalue,rollno);
+
+                }
+            else{
+                
+            var rollno = sessionStorage.getItem("yop-"+ivalue).slice(-2) + sessionStorage.getItem("branch-"+ivalue).substr(0,2) +ans;;
+sessionStorage.setItem("rollno-"+ivalue,rollno);
+                
+            }
+            document.cookie="rollnum="+rollno;
+            var year=sessionStorage.getItem("yop-"+ivalue);
+            var dept=sessionStorage.getItem("branch-"+ivalue);
+            var name = sessionStorage.getItem("name-"+ivalue);
+    var fireref1=database.ref().child('Count');//+year+'/'+dept);
+        var fd=fireref1.child(year+'/'+branch);
+    var result1=fd.set({
+        Val: ans
+    
+    
+    });
+
+    var usernode =  sessionStorage.getItem("mail-"+ivalue).substr(0, sessionStorage.getItem("mail-"+ivalue).indexOf('@')); 
+    
+        var fireref2=database.ref().child(usernode);
+       
+
+       // doc.text(45,100,"Roll no                 "+r.value);
+       var d = sessionStorage.getItem("image-"+ivalue);
+      
+    },3000);
+    var usernode= sessionStorage.getItem("mail-"+ivalue).substr(0, sessionStorage.getItem("mail-"+ivalue).indexOf('@')); 
+       var database = firebase.database();
+       var name=sessionStorage.getItem("name-"+ivalue);
+       var fireref= database.ref();
+         var fd=fireref.child(usernode);
+         var now = new Date();
+//var two_years_after = new Date(now.getFullYear()+2,now.getMonth(),now.getDay());
+var month = now.getUTCMonth()+1;
+var day = now.getUTCDate();
+var year = now.getUTCFullYear()+2;
+var two_years=day+"-"+month+"-"+year;
+
+    
+    var result=fd.set({
+        name: sessionStorage.getItem("name-"+ivalue),
+    department:sessionStorage.getItem("dep-"+ivalue),
+    branch:sessionStorage.getItem("branch-"+ivalue),
+    city: sessionStorage.getItem("city-"+ivalue),
+    year_of_passing: sessionStorage.getItem("yop-"+ivalue),
+    cur_organisation: sessionStorage.getItem("org-"+ivalue),
+    mobile:sessionStorage.getItem("mob-"+ivalue),
+    email:sessionStorage.getItem("mail-"+ivalue),
+    address:sessionStorage.getItem("addr-"+ivalue),
+    rollno:sessionStorage.getItem("rollno-"+ivalue),
+    image_url:sessionStorage.getItem("image-"+ivalue),
+    validity:two_years
+    });
+
+    
+    var rem=firebase.database().ref().child('To be Approved/'+name+' '+sessionStorage.getItem("branch-"+ivalue)+' '+sessionStorage.getItem("yop-"+ivalue)).remove();
+
+   
+function mailphp(){
+
+
+var degree;
+var dept = sessionStorage.getItem("branch-"+ivalue);
+var deg = sessionStorage.getItem("dep-"+ivalue);
+if(deg=="MBA")
+  dept="MBA";
+if(dept=="IT"||dept=="CHEM")
+  degree="B.Tech(";
+else if(dept=="MBA")
+  degree="";
+else
+  degree="B.E(";
+
+if(dept=="MBA")
+  dep="MBA";
+else
+  dep=degree+dept+")";
+$.post('mail.php',{postname:sessionStorage.getItem("name-"+ivalue),
+                          postroll:sessionStorage.getItem("rollno-"+ivalue),
+                        postmail:sessionStorage.getItem("mail-"+ivalue),
+                        postdep:dep,
+                        postyop: sessionStorage.getItem("yop-"+ivalue)+two_years,
+                        postcity: sessionStorage.getItem("city-"+ivalue),
+                        postaddr: sessionStorage.getItem("addr-"+ivalue),
+                        postdp:sessionStorage.getItem("image-"+ivalue),
+},function(data){
+alert("E-Card Sent!");
+});
+
+}
+
+setTimeout(function(){
+
+mailphp();
+
+
+},5000);
+}
+       else if(target.tagName && target.tagName.toLowerCase() == "button" && target.firstChild.nodeValue=="REJECT"){
+
+            $("#answerdiv-"+ivalue).hide(1000);
+
+
+       }   
+  });
+    
+   });
+    
+    </script>
+    
+   
+   
+</html>
